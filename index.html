@@ -9,7 +9,10 @@
     href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
     rel="stylesheet"
 />
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Kedebideri:wght@400;500;600;700;800;900&family=Kite+One&family=Madimi+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&family=Funnel+Display:wght@300..800&family=Griffy&family=Kumbh+Sans:wght@100..900&family=Rubik+Vinyl&family=Slackey&display=swap" rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css2?family=Anton&family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Kedebideri:wght@400;500;600;700;800;900&family=Kite+One&family=Madimi+One&display=swap" rel="stylesheet"> -->
     <meta name="description" content="HopeHands Charity - Together we help people in need by distributing food and clothes to our community. Donate today to make a difference.">
     <title>Alo Charity - your happiness, our smile</title>
     <link rel="stylesheet" href="styles.css">
@@ -35,7 +38,9 @@
                     <li><a href="#donate">Donate</a></li>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="donate.html" class="btn btn-primary btn-small">Donate Now</a></li>
+                    <li><a href="donate.html" style="    margin-top: .5em;
+    /* background: fixed; */
+    background: transparent;" class="btn btn-primary btn-small">Donate Now</a></li>
                 </ul>
             </div>
         </div>
@@ -44,7 +49,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-image">
-            <img src="/assets/banner.jpeg" alt="Volunteers helping community members">
+            <img src="/assets/Banner0.jpg" alt="Volunteers helping community members">
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -202,8 +207,31 @@
     </section> -->
 
     <!-- Donate Section -->
-    <section class="section section-primary" id="donate">
-        <div class="container">
+    <section style="border: 8px solid #00000029;" class="section section-primary" id="donate">
+       <div class="card">
+
+  <h1 id="card-h1">One meal, One smile.</h1>
+  <p id="card-p">Scan using PhonePe, GPay, Paytm or any UPI app.</p>
+  <div class="card-copy">
+ <div class="card-meta" id="vpa">suman4567@ybl </div>
+   <button onclick="copyEmail()"><i style="font-size: 1.2rem;" class="ri-file-copy-line"></i></button>
+  </div>
+  
+   
+
+  <div class="qr-wrap">
+    <img id="qrImg" class="qr" alt="UPI QR Code" />
+  </div>
+
+  <div class="card-meta"><b id="payeeName">SUMON DAS</b></div>
+ 
+
+  <button id="card-payBtn">Pay with PhonePe / UPI
+    
+  </button>
+</div>
+
+        <!-- <div class="container">
             <h2 class="section-title-light">Make a Difference Today</h2>
             <div class="donate-content">
                 <div class="donate-info">
@@ -232,7 +260,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 
     <!-- Gallery Section -->
@@ -417,5 +445,49 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+// Your REAL UPI ID & name
+const vpa = "alogrp@ptaxis";
+const payeeName = "Alo Group";
+
+// Update text on page
+document.getElementById("vpa").textContent = vpa;
+document.getElementById("payeeName").textContent = payeeName;
+
+// Build UPI URI
+function buildUpiUri() {
+  return `upi://pay?pa=${encodeURIComponent(vpa)}&pn=${encodeURIComponent(payeeName)}&cu=INR`;
+}
+
+// Generate high-quality QR
+function genQR() {
+  const uri = buildUpiUri();
+  const encoded = encodeURIComponent(uri);
+
+  const url = `https://api.qrserver.com/v1/create-qr-code/?size=600x600&ecc=H&data=${encoded}`;
+
+  document.getElementById("qrImg").src = url;
+}
+
+genQR();
+
+// Open UPI app on click
+document.getElementById("card-payBtn").onclick = () => {
+  window.location.href = buildUpiUri();
+};
+</script>
+<script>
+function copyEmail() {
+    // Get the text from the div
+    const emailText = document.getElementById("vpa").innerText;
+    
+    // Copy to clipboard
+    navigator.clipboard.writeText(emailText).then(() => {
+        alert("UPI Copied: " + emailText);
+    }).catch(err => {
+        console.error("Failed to copy: ", err);
+    });
+}
+</script>
 </body>
 </html>
