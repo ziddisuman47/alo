@@ -1,54 +1,109 @@
-<!-- Include Remix Icon CDN -->
-<link
-  href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css"
-  rel="stylesheet"
-/>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Fade Slideshow with Captions</title>
 
-<div class="card-meta-container">
-  <div class="card-meta" id="vpa">suman4567@ybl</div>
-  <button id="copyBtn" class="copy-btn">
-    <i class="ri-file-copy-line"></i>
-  </button>
-</div>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #f0f0f0;
+        font-family: sans-serif;
+      }
 
-<style>
-  .card-meta-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+      .slideshow-container {
+        position: relative;
+        width: 80vw;
+        max-width: 800px;
+        height: 50vh;
+        max-height: 500px;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
 
-  .copy-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: transform 0.2s ease, color 0.2s ease;
-  }
+      .slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out; /* fade effect */
+      }
 
-  .copy-btn:active {
-    transform: scale(1.3) rotate(20deg);
-    color: #4cb9a9; /* Optional color change on click */
-  }
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
-  /* Optional: subtle hover effect */
-  .copy-btn:hover {
-    color: #1b3a57;
-  }
-</style>
+      .caption {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        text-align: center;
+        font-size: 1.2em;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+    </style>
+  </head>
 
-<script>
-  const copyBtn = document.getElementById("copyBtn");
-  const emailText = document.getElementById("vpa").innerText;
+  <body>
+    <div class="slideshow-container">
+      <div class="slide">
+        <img src="assets/gallary (1).jpeg" />
+        <span class="caption">A beautiful mountain landscape</span>
+      </div>
 
-  copyBtn.addEventListener("click", () => {
-    navigator.clipboard
-      .writeText(emailText)
-      .then(() => {
-        // Animation feedback
-        copyBtn.classList.add("clicked");
-        setTimeout(() => copyBtn.classList.remove("clicked"), 300);
-      })
-      .catch((err) => console.error("Failed to copy: ", err));
-  });
-</script>
+      <div class="slide">
+        <img src="assets/gallary (2).jpeg" />
+        <span class="caption">City skyline at night</span>
+      </div>
+
+      <div class="slide">
+        <img src="assets/gallary (3).jpeg" />
+        <span class="caption">A cozy fireplace scene</span>
+      </div>
+
+      <div class="slide">
+        <img src="assets/gallary (4).jpeg" />
+        <span class="caption">Desert road under a clear sky</span>
+      </div>
+
+      <div class="slide">
+        <img src="/assets/gallary (5).jpeg" />
+        <span class="caption">Ocean waves crashing at sunset</span>
+      </div>
+    </div>
+
+    <script>
+      const slides = document.querySelectorAll(".slide");
+      let index = 0;
+
+      const timePerSlide = 5000; // 5 seconds per image
+
+      function showSlide(i) {
+        slides.forEach((slide, n) => {
+          slide.style.opacity = n === i ? "1" : "0";
+          slide.querySelector(".caption").style.opacity = n === i ? "1" : "0";
+        });
+      }
+
+      function nextSlide() {
+        index = (index + 1) % slides.length;
+        showSlide(index);
+      }
+
+      showSlide(index); // show first slide immediately
+      setInterval(nextSlide, timePerSlide); // loop slideshow
+    </script>
+  </body>
+</html>

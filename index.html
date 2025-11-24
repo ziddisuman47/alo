@@ -297,7 +297,115 @@
             </div>
         </div>
     </section>
+    <section class="section" id="gallery">
+    <div class="container">
+      
 
+        <div class="gallery-grid">
+
+            <!-- VIDEO 1 -->
+            <div class="gallery-item">
+                <video class="gallery-video" autoplay muted loop playsinline>
+                    <source src="assets/vido (1).mp4" type="video/mp4">
+                </video>
+                <div class="gallery-caption">Volunteers organizing donated clothes for distribution</div>
+            </div>
+
+            <!-- VIDEO 2 -->
+            <div class="gallery-item">
+                <video class="gallery-video" autoplay muted loop playsinline>
+                    <source src="assets/vido (2).mp4" type="video/mp4">
+                </video>
+                <div class="gallery-caption">Happy families receiving food donations</div>
+            </div>
+
+            <!-- VIDEO 3 -->
+            <div class="gallery-item">
+                <video class="gallery-video" autoplay muted loop playsinline>
+                    <source src="assets/vido (3).mp4" type="video/mp4">
+                </video>
+                <div class="gallery-caption">Our team loading donation boxes for delivery</div>
+            </div>
+
+            <!-- VIDEO 4 -->
+            <div class="gallery-item">
+                <video class="gallery-video" autoplay muted loop playsinline>
+                    <source src="assets/vido4.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-caption">Children receiving school supplies and food packages</div>
+            </div>
+
+            <!-- VIDEO 5 -->
+            <div class="gallery-item">
+                <video class="gallery-video" autoplay muted loop playsinline>
+                    <source src="assets/vido5.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-caption">Community meal service helping those in need</div>
+            </div>
+
+            <!-- VIDEO 6 -->
+            <div class="gallery-item">
+                <video class="gallery-video" autoplay muted loop playsinline>
+                    <source src="assets/video6.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-caption">Our dedicated volunteer team making a difference</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+   <section style="    display: flex;
+    align-items: center;
+    justify-content: center;" class="section" id="gallery">
+        <div class="slideshow-container">
+      <div class="slide">
+        <img src="assets/gallary (1).jpeg" />
+        <span class="caption">A beautiful mountain landscape</span>
+      </div>
+
+      <div class="slide">
+        <img src="assets/gallary (2).jpeg" />
+        <span class="caption">City skyline at night</span>
+      </div>
+
+      <div class="slide">
+        <img src="assets/gallary (3).jpeg" />
+        <span class="caption">A cozy fireplace scene</span>
+      </div>
+
+      <div class="slide">
+        <img src="assets/gallary (4).jpeg" />
+        <span class="caption">Desert road under a clear sky</span>
+      </div>
+
+      <div class="slide">
+        <img src="/assets/gallary (5).jpeg" />
+        <span class="caption">Ocean waves crashing at sunset</span>
+      </div>
+         <div class="slide">
+        <img src="/assets/img (1).jpeg" />
+        <span class="caption">Ocean waves crashing at sunset</span>
+      </div>    <div class="slide">
+        <img src="/assets/img (2).jpeg" />
+        <span class="caption">Ocean waves crashing at sunset</span>
+      </div>    <div class="slide">
+        <img src="/assets/img (3).jpeg" />
+        <span class="caption">Ocean waves crashing at sunset</span>
+      </div>    <div class="slide">
+        <img src="/assets/img (4).jpeg" />
+        <span class="caption">Ocean waves crashing at sunset</span>
+      </div>    <div class="slide">
+        <img src="/assets/img (6).jpeg" />
+        <span class="caption">Ocean waves crashing at sunset</span>
+      </div>    <div class="slide">
+        <img src="/assets/img (5).jpeg" />
+        <span class="caption">Ocean waves crashing at sunset</span>
+      </div>    <div class="slide">
+        <img src="/assets/img (7).jpeg" />
+        <span class="caption">Ocean waves crashing at sunset</span>
+      </div>
+    </div>
+    </section>
     <!-- Testimonials -->
     <section class="section section-gray">
         <div class="container">
@@ -336,9 +444,9 @@
                             <p>+91 861700-3290</p>
                         </div>
                     </div>
-                      <div  class="contact-item"> <a style="    display: flex;
+                      <div style="display: none;"  class="contact-item"> <a style="    display: flex;
     gap: 1.5rem;
-    align-items: center;
+    align-items: center;    display: none;
     text-decoration: none;" href="https://chat.whatsapp.com/JUzJME1KKpXIPlkuLZAySj?mode=hqrt1">
                         <div class="contact-icon">
                             <i style="font-size: 1.5rem;" class="ri-whatsapp-line"></i>
@@ -488,6 +596,26 @@ function copyEmail() {
         console.error("Failed to copy: ", err);
     });
 }
-</script>
+</script>  <script>
+      const slides = document.querySelectorAll(".slide");
+      let index = 0;
+
+      const timePerSlide = 5000; // 5 seconds per image
+
+      function showSlide(i) {
+        slides.forEach((slide, n) => {
+          slide.style.opacity = n === i ? "1" : "0";
+          slide.querySelector(".caption").style.opacity = n === i ? "1" : "0";
+        });
+      }
+
+      function nextSlide() {
+        index = (index + 1) % slides.length;
+        showSlide(index);
+      }
+
+      showSlide(index); // show first slide immediately
+      setInterval(nextSlide, timePerSlide); // loop slideshow
+    </script>
 </body>
 </html>
